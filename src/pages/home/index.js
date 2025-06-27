@@ -1,42 +1,60 @@
-import { useEffect, useState } from "react";
-import { Container, Movie, MovieList, Btn } from "./style";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { movieService } from '../../services/movieService';
+import MovieCard from '../../components/MovieCard';
+import CategoryFilter from '../../components/CategoryFilter';
+import Header from '../../components/Header';
 
 function Home() {
-    const imagePath = "https://image.tmdb.org/t/p/w500";
+  const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const [movies, setMovies] = useState([]);
-    const KEY = process.env.REACT_APP_KEY;
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=pt-BR`)
-            .then((response) => response.json())
-            .then((data) => {
-                setMovies(data.results);
-            });
-    }, [KEY]);
+  useEffect(() => {
+    const loadGenres = async () => {
+      const fetchedGenres = await movieService.getGenres();
+      setGenres(fetchedGenres);
+    };
+    loadGenres();
+  }, []);
+  
+  useEffect(() => {
+    const loadMovies = async () => {
+      setLoading(true);
+      let fetchedMovies;
+      if (selectedGenre) {
+        fetchedMovies = await movieService.getMoviesByGenre(selectedGenre);
+      } else {
+        fetchedMovies = await movieService.getPopularMovies();
+      }
+      setMovies(fetchedMovies);
+      setLoading(false);
+    };
 
-    return (
-        <Container>
-            <h1>Movies</h1>
-            <MovieList>
-                {movies.map((movie) => {
-                    return (
-                        <Movie key={movie.id}>
-                            <img
-                                src={`${imagePath}${movie.poster_path}`}
-                                alt="{movie.title}"
-                            />
-                            <span>{movie.title}</span>
+    loadMovies();
+  }, [selectedGenre]);
 
-                            <Link to={`/${movie.id}`}>
-                                <Btn>Detalhes</Btn>
-                            </Link>
-                        </Movie>
-                    );
-                })}
-            </MovieList>
-        </Container>
-    );
+  return (
+    // Agora o container principal está aqui dentro
+    <div className="container mx-auto px-4 py-8">
+      <Header /> {/* <-- ADICIONE O HEADER AQUI */}
+      
+      <CategoryFilter
+        genres={genres}
+        selectedGenre={selectedGenre}
+        onSelectGenre={setSelectedGenre}
+      />
+      {loading ? (
+        <p className="text-center text-xl mt-10">Carregando filmes...</p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Home;

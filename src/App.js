@@ -1,17 +1,27 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
-import Movie from "./pages/movie";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import MovieDetails from './pages/movieDetails';
+import Footer from './components/Footer'; // Importe o novo componente
 
-const App = () => {
-    return (
-        <div>
-            <Routes>
-                <Route path="/" exact element={<Home />} />
-                <Route path="/:id" exact element={<Movie />} />
-            </Routes>
-        </div>
-    );
-};
+function App() {
+  return (
+   
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+      {}
+      
+      {}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+        </Routes>
+      </main>
+
+      {}
+      <Footer />
+    </div>
+  );
+}
 
 export default App;
