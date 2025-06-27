@@ -1,51 +1,61 @@
-# API DE FILMES USANDO REACTJS
-
-Por [Diego Candido](https://diegocandido.com)
-
-
-Montei esse projeto bem básico para consumir uma API Rest com lista de filmes.
+🎬 CineFlix - Explorador de Filmes
+Uma aplicação web para explorar filmes populares e filtrar por gênero, construída com React e consumindo a API do The Movie Database (TMDb).
+![alt text](./screenshot.png)
+Dica: Tire um print da tela principal do seu projeto, salve na raiz da pasta com o nome screenshot.png e envie para o GitHub para que a imagem apareça aqui!
 
 
-
-## Site que fornece a API grátis: 
-```
-https://www.themoviedb.org/
-```
-
-## Documentação Oficial do projeto:
-```
-https://www.themoviedb.org/documentation/api
-```
-
-Irá ser necessário a geração de uma chave privada nesse link:
-```
-https://www.themoviedb.org/settings/api
-```
-
-## Token no arquivo .ENV ##
-Para acessar a API Restfull do site é necessário criar um token e colocar em um arquivo .ENV na raíz do projeto. Conforme imagem abaixo:
-
-![print](https://user-images.githubusercontent.com/1766790/191596782-51cd52f4-d471-4930-9e33-d792ad4aeeb1.JPG)
+🚀 Sobre o Projeto
+Este é um projeto de estudo desenvolvido para praticar conceitos fundamentais de React, como componentização, gerenciamento de estado com Hooks (useState, useEffect), consumo de APIs e roteamento com React Router. A aplicação permite que o usuário visualize filmes populares, filtre por diferentes categorias e veja detalhes específicos de cada filme.
+O objetivo foi criar uma interface limpa e funcional, seguindo boas práticas de organização de código e estilização moderna.
 
 
-## Clonando o Repositório ##
-Com o Git e o Node.js instalado na sua maquina e a **URL** do projeto em mãos, cria em algum lugar do seu pc uma pasta para criarmos uma copia do repositório, dentro dela abra o **cmd** ou **powershell** e digite os comandos abaixo:
-```
-git clone https://github.com/diegocandido/react-filmes.git
-cd react-filmes
+✨ Funcionalidades
+Visualização de Filmes: Exibição dos filmes mais populares na página inicial.
+Filtro por Gênero: Filtro dinâmico que permite ao usuário listar filmes por categorias como Ação, Comédia, Drama, etc.
+Página de Detalhes: Rota dedicada para cada filme, mostrando informações detalhadas como sinopse, data de lançamento, gêneros e pôster.
+Layout Responsivo: Interface adaptável a diferentes tamanhos de tela, estilizada com TailwindCSS.
+Estrutura Organizada: Código separado em componentes, páginas e serviços para facilitar a manutenção e escalabilidade.
+🛠️ Tecnologias Utilizadas
+Este projeto foi construído com as seguintes tecnologias:
+React: Biblioteca principal para a construção da interface.
+JavaScript: Linguagem de programação base.
+TailwindCSS: Framework de CSS para estilização rápida e moderna.
+React Router: Para gerenciamento das rotas da aplicação.
+Heroicons: Biblioteca de ícones SVG.
+The Movie Database (TMDb) API: Fonte dos dados de filmes.
+🔧 Como Executar o Projeto Localmente
+Para rodar este projeto na sua máquina, siga os passos abaixo:
+Clone o repositório:
+Generated bash
+git clone https://github.com/Bellapy/Cineflix-react.git
+Use code with caution.
+Bash
+Navegue até a pasta do projeto:
+Generated bash
+cd Cineflix-react
+Use code with caution.
+Bash
+Instale as dependências:
+Generated bash
 npm install
+Use code with caution.
+Bash
+Crie o arquivo de ambiente:
+Crie um arquivo chamado .env.local na raiz do projeto. Ele guardará sua chave da API.
+Generated code
+
+
+# Exemplo de criação no terminal (Linux/macOS)
+touch .env.local
+Use code with caution.
+Adicione sua chave da API:
+Dentro do arquivo .env.local, adicione a seguinte linha, substituindo SUA_CHAVE_DA_API_AQUI pela sua chave real do TMDb:
+Generated code
+REACT_APP_KEY=SUA_CHAVE_DA_API_AQUI
+Use code with caution.
+Inicie a aplicação:
+Generated bash
 npm start
-```
-
-## Tela Inicial do projeto:
-
-![screan](https://user-images.githubusercontent.com/81689363/190420116-177e6087-c1dd-4276-bef1-1dd20e575039.PNG)
-
-
-## Tela de detalhes do filme:
-
-![details](https://user-images.githubusercontent.com/81689363/190419902-82b9ce94-3944-4bdb-ad1c-e35a93b142e1.PNG)
-
-
-
- 
+Use code with caution.
+Bash
+A aplicação estará disponível em http://localhost:3000.
